@@ -1,6 +1,36 @@
 ############Q1########
 
+def question1(s,t):
+    import collections
+    # convert 's' and 't' to lower case
+    s = s.lower()
+    t = t.lower()
+    
+    # check if length of 's' is lower than 't'
+    if len(s) < len(t):
+        return False      
+    
+    # make a dict of letter counts contained in 't' 
+    t_dictionary  = collections.Counter(t)
+    
+    # for each substring of 's' check whether the dictionary 
+    # of str string  substring that matches 't_dict' 
+    for i in range(len(s)-len(t)+1):
+        #substring = s[i:i+len(t)]                           
+        if collections.Counter(s[i:i+len(t)]) == t_dictionary:
+            return True
+    return False          
 
+
+print ("\n Q1 results :\n")
+print (question1("Udacity", "ud")) #True
+print (question1("udacity", "ciy")) #False
+print (question1("ty", "udacity")) # fFalse 
+# should print False
+print (question1("", "")) 
+# should print True 
+
+########################
 def compare(set1,set2):
   for i in set!:
     if i in set2:
