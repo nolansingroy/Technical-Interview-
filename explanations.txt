@@ -1,0 +1,7 @@
+Question1: 
+Here we are checking whether some anagram of 't' is a substring of 's'
+by compiling a dictionary of alphabet counts for 't' and check with every possible consecutive substring sets in 's'.I am using a dictionary variable
+to store the counts of alphabets in 't'. Our time effciency, if we
+assume n is equal to length of 's' then worst case would be O(n), average case: O(n/2) and our space effeciency:O(1).
+-----------------------------------------------------------------------------
+
