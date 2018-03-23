@@ -37,8 +37,29 @@ The time efficency:
 	Average Case: O(n^2/2)
 Space Effeciency: O(n/2)
 
+-----------------------------------------------------------------
+Question 5
 
- 
+Using two pointer to advance through a linked list, with
+the previous pointer resting at the mth ndoe from the end.
+The Alorthim:
+	# so the distance between the end pointer and 
+          mid pointer is equivilent to the distance between the mth node
+          and the end of list +1.
+
+	1. advance a 11 end tracker to node m -1 of the list
+
+         # maintaining the distance, mid point lives at end of list
+           from mth node
+
+	2. then advance two pointers through the list until 
+           the end pointer is set to None or the end node +1
+
+	3. Mid pointer data is returned
+
+Time Effeciency: O(n), always iterate thrpugh every element of the LL.
+Space Effeciency: O(1), only two variables are declared no matter the size of
+			of the linked list. 
 
 
 
