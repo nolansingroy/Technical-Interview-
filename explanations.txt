@@ -13,4 +13,14 @@ O(n^2). The space complexity is O(1) since we only had to store left and right
 indexes of the longest palindrome string.
 
 ----------------------------------------------------------------------------
+Question 3: 
+
+
+The function builds the list by iterating over the vertices.
+Next, the function finds the shortest length by sorting 
+by weight. Finally the vertices are recompiled into the edge list in order of
+least edge weight to most. Here the overall efficency would be O(2n+ V), 
+where the number '2' is the function iterating the edges twice
+the variable n = edges and the variable v = vertices. 
+
 
