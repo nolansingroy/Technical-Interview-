@@ -24,7 +24,7 @@ def question1(s,t):
     return False          
 
 
-print ("\n Q1 results :\n")
+print ("\n ---- Question 1 results ----")
 print (question1("Udacity", "ud")) #True
 print (question1("udacity", "ciy")) #False
 print (question1("ty", "udacity")) # fFalse 
@@ -76,7 +76,7 @@ def question2(a):
 
 # Test Cases
 print ("\n")
-print("\n Question 2 results")
+print("---- Question 2 results ----")
 print question2("racecar") # racecar
 print question2(1) #  Error input is !string
 print question2("z") #  sorry you need more then two letters for me to compute
@@ -162,7 +162,7 @@ def question4(T, r, n1, n2):
     return -1
 
 
-print ("\n Results for question 4 \n")
+print ("\n ----- Results for question 4 ----- ")
 print (question4([[0,1,0,0,0],
                   [0,0,0,0,0],
                   [0,0,0,0,0],
@@ -192,5 +192,37 @@ print (question4([[0,0,0,0,0,0],
                  2,
                  0,
                  5))
-# Answer 2
+# Answer: 2
+
+### Question 5 ####
+
+def question5(ll, m):
+    end_pointer = ll
+    mid_pointer = ll
+    for num in xrange(m):
+        end_pointer = end_pointer.next  # Advance ll end tracker
+    while end_pointer:  # Advance end pointer through complete ll
+        end_pointer = end_pointer.next
+        mid_pointer = mid_pointer.next
+    return mid_pointer.data
+
+class Node(object):
+  def __init__(self, data):
+    self.data = data
+    self.next = None
+
+
+if __name__ == '__main__':
+    # Testing a 5 noded  linked list for testing
+    root = Node(1)
+    current_node = root
+    for num in xrange(4):
+        new_node = Node(num + 2)
+        current_node.next = new_node
+        current_node = new_node
+    print '\n ---- Question 5 results ----'
+    print 'Linked list has values 1,2,3,4,5'
+    print question5(root, 3) # 3rd value from the end result is 3
+    print question5(root, 1) # 1st value from end result is 5 
+    print question5(root, 5) # 5th value from end result is '1'
 
