@@ -137,3 +137,60 @@ print question3({'A': [('B', 2)],
                  'C': [('B', 5)]})
 # {'A': [('B', '2')], 'C': [('B', '5')], 'B': [('A', '2'), ('C', '5')]}
 
+
+
+### question 4 #############
+def parent(T, n):
+        # if variable 'n' exist then return the parent else -1
+    numrows = len(T)
+    for i in range(numrows):
+        if T[i][n] == 1:
+            return i
+    return -1
+
+def question4(T, r, n1, n2):
+    n1_parents = []
+    while n1 != r:
+        n1 = parent(T, n1)
+        n1_parents.append(n1)
+    if len(n1_parents) == 0:
+        return -1
+    while n2 != r:
+        n2 = parent(T, n2)
+        if n2 in n1_parents:
+            return n2
+    return -1
+
+
+print ("\n Results for question 4 \n")
+print (question4([[0,1,0,0,0],
+                  [0,0,0,0,0],
+                  [0,0,0,0,0],
+                  [1,0,0,0,1],
+                  [0,0,0,0,0]],
+                 3,
+                 1,
+                 4))
+# answer 3
+
+print (question4([[0,0,0,0,0],
+                  [1,0,0,1,0],
+                  [0,1,0,0,0],
+                  [0,0,0,0,0],
+                  [0,0,0,0,0]],
+                 2,
+                 0,
+                 3))
+# answer 1
+
+print (question4([[0,0,0,0,0,0],
+                  [1,0,0,1,0,0],
+                  [0,1,0,0,1,0],
+                  [0,0,0,0,0,0],
+                  [0,0,0,0,0,1],
+                  [0,0,0,0,0,0]],
+                 2,
+                 0,
+                 5))
+# Answer 2
+
