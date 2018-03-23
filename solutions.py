@@ -1,3 +1,5 @@
+from operator import itemgetter 
+
 ############   Question 1    ########
 
 def question1(s,t):
@@ -80,7 +82,58 @@ print question2(1) #  Error input is !string
 print question2("z") #  sorry you need more then two letters for me to compute
 
 
-
-
-
 ############# For Question3 #############
+
+def question3(G):
+    edges, vertices = edgeWeightSort(G) # weight list !sorted by weight
+    edges_sorted = sorted(edges, key=itemgetter(0)) #  sort by weight w/edges 
+    return verticeConnected(edges_sorted, vertices)
+
+
+def edgeWeightSort(G):
+    edges = []
+    vertices = {}
+    for startingVertice in G: # transverse the vertices of the sorted by weight 'G'
+        vertices[startingVertice] = [startingVertice] # add vertices to dict
+        for edge in G[startingVertice]: 
+            endingVertice = edge[0]# the other vertice in the edge
+            weight = edge[1] # weight of edge between the two vertices
+            edges.append([weight, startingVertice, endingVertice]) # list of edge weight and the vertices at the end of the edges
+    return edges, vertices
+
+
+def verticeConnected(edges_sorted, vertices):
+    minSpanTree = {} # dict to build answer 
+
+    for edge in edges_sorted: # sorted edged list unpacking
+        startingVertice = edge[1] 
+        endingVertice = edge[2] 
+        weight = edge[0] 
+
+        if startingVertice not in vertices[endingVertice] and endingVertice not in vertices[startingVertice]:
+            minSpanTree.setdefault(startingVertice, []).append((endingVertice, str(weight))) # build up dictionary with the vertices and its edges with other verts
+            minSpanTree.setdefault(endingVertice, []).append((startingVertice, str(weight))) # add the reverse 
+            vertices[startingVertice], vertices[endingVertice] = verticeList(
+                vertices[startingVertice], vertices[endingVertice]) # connected vertice to list
+    return minSpanTree
+
+
+def verticeList(vlist1, vlist2):
+    vertConcat = vlist1 + list(set(vlist2) - set(vlist1)) # removing the duplicate vertices
+    return vertConcat, vertConcat
+
+print ("\n")
+print ("------ Question 3 results -------  ")
+print question3({}) # {}
+
+print question3({'A': [('B', 2)],
+                 'B': [('A', 2), ('C', 5), ('D', 3)],
+                 'C': [('B', 5), ('D', 4)],
+                 'D': [('C', 4), ('B', 3)]})
+# {'A': [('B', '2')], 'C': [('D', '4')], 'B': [('A', '2'), ('D', '3')], 'D': [('B', '1'), ('C', '4')]}
+
+print question3({'A': [('B', 2)],
+                 'B': [('A', 2), ('C', 5)],
+                 'C': [('B', 5)]})
+# {'A': [('B', '2')], 'C': [('B', '5')], 'B': [('A', '2'), ('C', '5')]}
+
